@@ -13,19 +13,6 @@ export const router = createRouter({ history: createWebHistory(), routes });
 export const validateAuthenticateRoutePermission = (to, next) => {
   const { isLoggedIn, getCurrentUser: user } = store.getters;
 
-  // Allow public routes without authentication
-  const publicRoutes = [
-    "login",
-    "sso_login",
-    "auth_signup",
-    "auth_confirmation",
-    "auth_reset_password",
-    "auth_password_edit",
-  ];
-  if (publicRoutes.includes(to.name)) {
-    return next();
-  }
-
   if (
     !isLoggedIn &&
     (to.path.includes("/app/login") || to.path.includes("/app/auth"))
