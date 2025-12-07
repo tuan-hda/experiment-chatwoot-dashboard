@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "components/*": [
+        "./src/dashboard/components/*"
+      ],
+      "next/*": [
+        "./src/dashboard/components-next/*"
+      ],
+      "v3/*": [
+        "./src/v3/*"
+      ],
+      "dashboard/*": [
+        "./src/dashboard/*"
+      ],
+      "helpers/*": [
+        "./src/shared/helpers/*"
+      ],
+      "shared/*": [
+        "./src/shared/*"
+      ],
+      "survey/*": [
+        "./src/survey/*"
+      ],
+      "widget/*": [
+        "./src/widget/*"
+      ],
+      "assets/*": [
+        "./src/dashboard/assets/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
