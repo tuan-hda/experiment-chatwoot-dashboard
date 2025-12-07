@@ -2,11 +2,12 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import { frontendURL } from "../helper/URLHelper";
 import dashboard from "./dashboard/dashboard.routes";
+import authRoutes from "../../v3/views/routes";
 import store from "dashboard/store";
 import { validateLoggedInRoutes } from "../helper/routeHelpers";
 import AnalyticsHelper from "../helper/AnalyticsHelper";
 
-const routes = [...dashboard.routes];
+const routes = [...authRoutes, ...dashboard.routes];
 
 export const router = createRouter({ history: createWebHistory(), routes });
 
@@ -17,7 +18,7 @@ export const validateAuthenticateRoutePermission = (to, next) => {
     !isLoggedIn &&
     (to.path.includes("/app/login") || to.path.includes("/app/auth"))
   ) {
-    window.location.assign("/app/login");
+    // window.location.assign("/app/login");
     return "";
   }
 
