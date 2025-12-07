@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from "vue-router";
 
-import { frontendURL } from '../helper/URLHelper';
-import dashboard from './dashboard/dashboard.routes';
-import store from 'dashboard/store';
-import { validateLoggedInRoutes } from '../helper/routeHelpers';
-import AnalyticsHelper from '../helper/AnalyticsHelper';
+import { frontendURL } from "../helper/URLHelper";
+import dashboard from "./dashboard/dashboard.routes";
+import store from "dashboard/store";
+import { validateLoggedInRoutes } from "../helper/routeHelpers";
+import AnalyticsHelper from "../helper/AnalyticsHelper";
 
 const routes = [...dashboard.routes];
 
@@ -13,21 +13,37 @@ export const router = createRouter({ history: createWebHistory(), routes });
 export const validateAuthenticateRoutePermission = (to, next) => {
   const { isLoggedIn, getCurrentUser: user } = store.getters;
 
-  if (!isLoggedIn) {
-    window.location.assign('/app/login');
-    return '';
+  // Allow public routes without authentication
+  const publicRoutes = [
+    "login",
+    "sso_login",
+    "auth_signup",
+    "auth_confirmation",
+    "auth_reset_password",
+    "auth_password_edit",
+  ];
+  if (publicRoutes.includes(to.name)) {
+    return next();
+  }
+
+  if (
+    !isLoggedIn &&
+    (to.path.includes("/app/login") || to.path.includes("/app/auth"))
+  ) {
+    window.location.assign("/app/login");
+    return "";
   }
 
   const { accounts = [], account_id: accountId } = user;
 
   if (!accounts.length) {
-    if (to.name === 'no_accounts') {
+    if (to.name === "no_accounts") {
       return next();
     }
-    return next(frontendURL('no-accounts'));
+    return next(frontendURL("no-accounts"));
   }
 
-  if (to.name === 'no_accounts' || !to.name) {
+  if (to.name === "no_accounts" || !to.name) {
     return next(frontendURL(`accounts/${accountId}/dashboard`));
   }
 
@@ -36,10 +52,10 @@ export const validateAuthenticateRoutePermission = (to, next) => {
 };
 
 export const initalizeRouter = () => {
-  const userAuthentication = store.dispatch('setUser');
+  const userAuthentication = store.dispatch("setUser");
 
   router.beforeEach((to, _from, next) => {
-    AnalyticsHelper.page(to.name || '', {
+    AnalyticsHelper.page(to.name || "", {
       path: to.path,
       name: to.name,
     });
