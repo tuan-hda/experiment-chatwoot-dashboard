@@ -4,6 +4,7 @@ const parseErrorCode = error => Promise.reject(error);
 
 export default axios => {
   const { apiHost = '' } = window.chatwootConfig || {};
+  console.log("apiHost")
   const wootApi = axios.create({ baseURL: `${apiHost}/` });
   // Add Auth Headers to requests if logged in
   if (Auth.hasAuthCookie()) {

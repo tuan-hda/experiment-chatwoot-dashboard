@@ -128,6 +128,9 @@ export default {
 </script>
 
 <template>
+  <div id="debug-info" style="position:fixed; top:0; left:0; z-index:9999; background:yellow; color:black;">
+    Debug: isFetching={{ authUIFlags.isFetching }} isFetchingItem={{ accountUIFlags.isFetchingItem }}
+  </div>
   <div
     v-if="!authUIFlags.isFetching && !accountUIFlags.isFetchingItem"
     id="app"
@@ -147,7 +150,7 @@ export default {
     <WootSnackbarBox />
     <NetworkNotification />
   </div>
-  <LoadingState v-else />
+  <LoadingState v-else message="Loading Application..." />
 </template>
 
 <style lang="scss">

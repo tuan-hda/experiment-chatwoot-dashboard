@@ -219,9 +219,8 @@ export default {
 </script>
 
 <template>
-  <main
-    class="flex flex-col w-full min-h-screen py-20 bg-n-brand/5 dark:bg-n-background sm:px-6 lg:px-8"
-  >
+  <main style="background-color: red; color: white; padding: 40px; font-size: 24px; font-weight: bold;">
+    <div>TEST - If you see this text and red background, the component is rendering!</div>
     <section class="max-w-5xl mx-auto">
       <img
         :src="globalConfig.logo"

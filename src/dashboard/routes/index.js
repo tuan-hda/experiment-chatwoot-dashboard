@@ -18,8 +18,7 @@ export const validateAuthenticateRoutePermission = (to, next) => {
     !isLoggedIn &&
     (to.path.includes("/app/login") || to.path.includes("/app/auth"))
   ) {
-    // window.location.assign("/app/login");
-    return "";
+    return next();
   }
 
   const { accounts = [], account_id: accountId } = user;

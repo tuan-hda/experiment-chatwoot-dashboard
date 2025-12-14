@@ -22,18 +22,8 @@ const defaultSansFonts = [
 const tailwindConfig = {
   darkMode: "class",
   content: [
-    "./enterprise/app/views/**/*.html.erb",
-    "./app/javascript/widget/**/*.vue",
-    "./app/javascript/v3/**/*.vue",
-    "./app/javascript/dashboard/**/*.vue",
-    "./app/javascript/portal/**/*.vue",
-    "./app/javascript/shared/**/*.vue",
-    "./app/javascript/survey/**/*.vue",
-    "./app/javascript/dashboard/components-next/**/*.vue",
-    "./app/javascript/dashboard/helper/**/*.js",
-    "./app/javascript/dashboard/components-next/**/*.js",
-    "./app/javascript/dashboard/routes/dashboard/**/**/*.js",
-    "./app/views/**/*.html.erb",
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {

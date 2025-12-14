@@ -28,4 +28,13 @@ export default defineConfig({
       assets: path.resolve("./src/dashboard/assets"),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'],
+        quietDeps: true,
+      },
+    },
+  },
 });

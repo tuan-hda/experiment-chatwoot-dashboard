@@ -1,18 +1,17 @@
-import { frontendURL } from 'dashboard/helper/URLHelper';
-
-import Login from './login/Index.vue';
-import SamlLogin from './login/Saml.vue';
-import Signup from './auth/signup/Index.vue';
-import ResetPassword from './auth/reset/password/Index.vue';
-import Confirmation from './auth/confirmation/Index.vue';
-import PasswordEdit from './auth/password/Edit.vue';
+import Login from "./login/Index.vue";
+import SamlLogin from "./login/Saml.vue";
+import Signup from "./auth/signup/Index.vue";
+import ResetPassword from "./auth/reset/password/Index.vue";
+import Confirmation from "./auth/confirmation/Index.vue";
+import PasswordEdit from "./auth/password/Edit.vue";
 
 export default [
   {
-    path: frontendURL('login'),
-    name: 'login',
+    path: "/app/login",
+    name: "login",
     component: Login,
-    props: route => ({
+    meta: { ignoreSession: true },
+    props: (route) => ({
       config: route.query.config,
       email: route.query.email,
       ssoAuthToken: route.query.sso_auth_token,
@@ -22,46 +21,46 @@ export default [
     }),
   },
   {
-    path: frontendURL('login/sso'),
-    name: 'sso_login',
+    path: "/app/login/sso",
+    name: "sso_login",
     component: SamlLogin,
     meta: { requireEnterprise: true },
-    props: route => ({
+    props: (route) => ({
       authError: route.query.error,
       target: route.query.target,
     }),
   },
   {
-    path: frontendURL('auth/signup'),
-    name: 'auth_signup',
+    path: "/app/auth/signup",
+    name: "auth_signup",
     component: Signup,
     meta: { requireSignupEnabled: true },
   },
   {
-    path: frontendURL('auth/confirmation'),
-    name: 'auth_confirmation',
+    path: "/app/auth/confirmation",
+    name: "auth_confirmation",
     component: Confirmation,
     meta: { ignoreSession: true },
-    props: route => ({
+    props: (route) => ({
       config: route.query.config,
       confirmationToken: route.query.confirmation_token,
       redirectUrl: route.query.route_url,
     }),
   },
   {
-    path: frontendURL('auth/password/edit'),
-    name: 'auth_password_edit',
+    path: "/app/auth/password/edit",
+    name: "auth_password_edit",
     component: PasswordEdit,
     meta: { ignoreSession: true },
-    props: route => ({
+    props: (route) => ({
       config: route.query.config,
       resetPasswordToken: route.query.reset_password_token,
       redirectUrl: route.query.route_url,
     }),
   },
   {
-    path: frontendURL('auth/reset/password'),
-    name: 'auth_reset_password',
+    path: "/app/auth/reset/password",
+    name: "auth_reset_password",
     component: ResetPassword,
   },
 ];
